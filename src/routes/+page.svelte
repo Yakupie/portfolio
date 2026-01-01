@@ -1,107 +1,49 @@
 <script>
-    import { onMount, onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 
-    import Navbar from '$lib/components/Navbar.svelte';
-    import MainPage from '$lib/components/MainPage.svelte';
-    import PageCard from '$lib/components/pageCard.svelte';
-    import Experiement from '$lib/components/Experiement.svelte';
-    import Contact from '$lib/components/Contact.svelte';
-    import Particles from '$lib/components/Particles.svelte';
+	import Navbar from '$lib/components/Navbar.svelte';
+	import MainPage from '$lib/components/MainPage.svelte';
+	import PageCard from '$lib/components/pageCard.svelte';
+	import Experiement from '$lib/components/Experiement.svelte';
+	import Contact from '$lib/components/Contact.svelte';
 
-    import { gsap } from 'gsap';
-    import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
-    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import { gsap } from 'gsap';
+	import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-    gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
+	onMount(() => {
+		if (typeof window === 'undefined') return;
 
-    let cleanups = [];
+		gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
-    function setupNavbarScroll() {
-        const map = {
-            overview: '.container',
-            experiments: '.container3',
-            contact: '.container4'
-        };
+		// Navbar animasyon
+		gsap.from('.navbar', {
+			y: -40,
+			opacity: 0,
+			duration: 0.8
+		});
 
-        document.querySelectorAll('.navbarUlArea a').forEach(link => {
-            const handler = e => {
-                e.preventDefault();
-                const key = link.textContent.trim().toLowerCase();
-
-                gsap.to(window, {
-                    duration: 1,
-                    scrollTo: map[key],
-                    ease: 'power3.out'
-                });
-            };
-
-            link.addEventListener('click', handler);
-            cleanups.push(() =>
-                link.removeEventListener('click', handler)
-            );
-        });
-    }
-
-    function initialLoadAnimations() {
-        gsap.from('.navbar', {
-            y: -50,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power3.out'
-        });
-
-        gsap.from(
-            ['.headerAreaText', '.textAreaText', '.buttonsArea button'],
-            {
-                y: 40,
-                opacity: 0,
-                stagger: 0.15,
-                duration: 0.8,
-                delay: 0.3,
-                ease: 'power3.out'
-            }
-        );
-    }
-
-    function scrollReveal(selector) {
-        gsap.utils.toArray(selector).forEach(el => {
-            gsap.from(el, {
-                scrollTrigger: {
-                    trigger: el,
-                    start: 'top 85%',
-                    once: true
-                },
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
-                ease: 'power3.out'
-            });
-        });
-    }
-
-    onMount(() => {
-        if (typeof window === 'undefined') return;
-
-        setupNavbarScroll();
-        initialLoadAnimations();
-
-        scrollReveal('.profileSide');
-        scrollReveal('.codeCard');
-        scrollReveal('.card');
-        scrollReveal('.techChip');
-    });
-
-    onDestroy(() => {
-        cleanups.forEach(fn => fn());
-        ScrollTrigger.getAll().forEach(t => t.kill());
-    });
+		// Scroll reveal
+		gsap.utils.toArray('.section').forEach(el => {
+			gsap.from(el, {
+				scrollTrigger: {
+					trigger: el,
+					start: 'top 85%',
+					once: true
+				},
+				y: 40,
+				opacity: 0,
+				duration: 0.8
+			});
+		});
+	});
 </script>
 
 
 
 
+
 <div class="container hero">
-    <Particles />
     <Navbar />
     <MainPage />
 </div>
