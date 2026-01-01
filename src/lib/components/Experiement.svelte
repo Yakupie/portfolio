@@ -1,7 +1,7 @@
 <script>
-	import web1 from '$lib/assets/web1.png';
-	import web2 from '$lib/assets/web2.png';
-	import web3 from '$lib/assets/web3.png';
+	import web1 from '$lib/assets/web1.webp';
+	import web2 from '$lib/assets/web2.webp';
+	import web3 from '$lib/assets/web3.webp';
 
 	let expSlider;
 	let projSlider;

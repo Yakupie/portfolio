@@ -9,49 +9,52 @@
 
 	let mounted = false;
 
-	onMount(async () => {
-		mounted = true;
+onMount(async () => {
+	if (typeof window === 'undefined') return;
 
-		if (typeof window === 'undefined') return;
+	const { gsap } = await import('gsap');
+	const { ScrollTrigger } = await import('gsap/ScrollTrigger');
 
-		const { gsap } = await import('gsap');
-		const { ScrollToPlugin } = await import('gsap/ScrollToPlugin');
-		const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+	gsap.registerPlugin(ScrollTrigger);
 
-		gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
+	gsap.from('.navbar', {
+		y: -40,
+		opacity: 0,
+		duration: 0.8
+	});
 
-		gsap.from('.navbar', {
-			y: -40,
+	gsap.utils.toArray('.section').forEach(el => {
+		gsap.from(el, {
+			scrollTrigger: {
+				trigger: el,
+				start: 'top 85%',
+				once: true
+			},
+			y: 40,
 			opacity: 0,
 			duration: 0.8
 		});
-
-		gsap.utils.toArray('.section').forEach(el => {
-			gsap.from(el, {
-				scrollTrigger: {
-					trigger: el,
-					start: 'top 85%',
-					once: true
-				},
-				y: 40,
-				opacity: 0,
-				duration: 0.8
-			});
-		});
 	});
+
+	// 🔥 BUNU UNUTMUŞSUN
+	mounted = true;
+});
+
 </script>
 
 <!-- HERO -->
 <div class="container hero">
-	<img
-		class="heroBg"
-		src="/assets/background.webp"
-		alt=""
-		aria-hidden="true"
-		loading="lazy"
-		fetchpriority="low"
-		decoding="async"
-	/>
+<img
+	class="heroBg"
+	src="/assets/background.webp"
+	alt=""
+	width="1920"
+	height="1080"
+	fetchpriority="high"
+	loading="eager"
+	decoding="async"
+/>
+
 
 	<Navbar />
 	<MainPage />

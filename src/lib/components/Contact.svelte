@@ -1,18 +1,18 @@
 <script>
     // 🎵 MUSIC
     import song from '$lib/assets/ses.mp3';
-    import cover from '$lib/assets/cover.jpg';
-    import coverpp from '$lib/assets/coverpp.jpg';
+    import cover from '$lib/assets/cover.webp';
+    import coverpp from '$lib/assets/coverpp.webp';
 
     // 🧠 SKILLS
-    import html from '$lib/assets/html.png';
-    import css from '$lib/assets/css.png';
-    import js from '$lib/assets/js.png';
-    import svelteIcon from '$lib/assets/svelte.png';
-    import node from '$lib/assets/node.png';
-    import c from '$lib/assets/c.png';
-    import php from '$lib/assets/php.png';
-    import mysql from '$lib/assets/mysql.png';
+    import html from '$lib/assets/html.webp';
+    import css from '$lib/assets/css.webp';
+    import js from '$lib/assets/js.webp';
+    import svelteIcon from '$lib/assets/svelte.webp';
+    import node from '$lib/assets/node.webp';
+    import c from '$lib/assets/c.webp';
+    import php from '$lib/assets/php.webp';
+    import mysql from '$lib/assets/mysql.webp';
 
     let audio;
     let playing = false;
@@ -97,6 +97,7 @@
 	}}
 	on:timeupdate={updateProgress}
 	on:ended={() => (playing = false)}
+    preload ="none"
 ></audio>
 
 
