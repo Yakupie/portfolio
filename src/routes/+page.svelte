@@ -7,12 +7,16 @@
 	import Experiement from '$lib/components/Experiement.svelte';
 	import Contact from '$lib/components/Contact.svelte';
 
-	import { gsap } from 'gsap';
-	import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	let mounted = false;
 
-	onMount(() => {
+	onMount(async () => {
+		mounted = true;
+
 		if (typeof window === 'undefined') return;
+
+		const { gsap } = await import('gsap');
+		const { ScrollToPlugin } = await import('gsap/ScrollToPlugin');
+		const { ScrollTrigger } = await import('gsap/ScrollTrigger');
 
 		gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
@@ -39,41 +43,40 @@
 
 <!-- HERO -->
 <div class="container hero">
-
-	<!-- 🔥 LCP IMAGE -->
 	<img
 		class="heroBg"
 		src="/assets/background.webp"
 		alt=""
-		width="1920"
-		height="1080"
-		loading="eager"
-		fetchpriority="high"
+		aria-hidden="true"
+		loading="lazy"
+		fetchpriority="low"
 		decoding="async"
 	/>
 
-	<div class="heroOverlay"></div>
+	<Navbar />
+	<MainPage />
+</div>
 
-	<!-- ✅ SADECE HERO CONTENT ÖNE ALINIYOR -->
-	<div class="heroContent">
-		<Navbar />
-		<MainPage />
+{#if mounted}
+	<div class="container section">
+		<PageCard />
 	</div>
-</div>
 
-<div class="container section">
-	<PageCard />
-</div>
+	<div class="container section">
+		<Experiement />
+	</div>
 
-<div class="container section">
-	<Experiement />
-</div>
-
-<div class="container section">
-	<Contact />
-</div>
+	<div class="container section">
+		<Contact />
+	</div>
+{/if}
 
 <style>
+.container > *:not(.heroBg) {
+	position: relative;
+	z-index: 2;
+}
+
 :global(*) {
 	margin: 0;
 	padding: 0;
@@ -87,7 +90,6 @@
 	overflow: hidden;
 }
 
-/* BACKGROUND */
 .heroBg {
 	position: absolute;
 	inset: 0;
@@ -98,23 +100,20 @@
 	filter: brightness(0.4);
 }
 
-/* OVERLAY */
-.heroOverlay {
+.hero::after {
+	content: '';
 	position: absolute;
-	inset: 0;
-	z-index: 1;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 140px;
 	background: linear-gradient(
 		to bottom,
 		rgba(7,7,13,0),
 		rgba(7,7,13,.6),
 		#07070d
 	);
-}
-
-/* CONTENT */
-.heroContent {
-	position: relative;
-	z-index: 2;
+	z-index: 1;
 }
 
 /* SECTIONS */

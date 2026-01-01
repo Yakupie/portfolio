@@ -4,7 +4,7 @@
 <div class="mainPage">
     <div class="mainPageWrapper">
         <div class="headerArea">
-            <div class="headerAreaText">
+            <div class="headerAreaText" data-lcp>
                 Building data driven interfaces.
             </div>
         </div>
