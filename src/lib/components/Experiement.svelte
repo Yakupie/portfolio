@@ -1,102 +1,96 @@
 <script>
     import web1 from '$lib/assets/web1.png';
-    import web2 from '$lib/assets/web2.png';
-    import web3 from '$lib/assets/web3.png';
+	import web2 from '$lib/assets/web2.png';
+	import web3 from '$lib/assets/web3.png';
 
-    let expSlider;
-    let projSlider;
+	let expSlider;
+	let projSlider;
 
-    function scroll(el, dir) {
-        if (!el) return;
+	function scroll(el, dir) {
+		if (!el) return;
+		el.scrollBy({ left: dir * 300, behavior: 'smooth' });
+	}
 
-        el.scrollBy({
-            left: dir * 300,
-            behavior: 'smooth'
-        });
-    }
+	const experiences = [
+		{ title: "Component Development", desc: "Reusable ve temiz UI component’leri geliştiriyorum.", badge: "UI" },
+		{ title: "Svelte UI Development", desc: "Modern ve performanslı Svelte arayüzleri.", badge: "Svelte" },
+		{ title: "Responsive Design", desc: "Tüm ekranlar için uyumlu tasarım.", badge: "Responsive" },
+		{ title: "Modern UI Systems", desc: "Minimal ve sürdürülebilir tasarım dilleri.", badge: "Design" },
+		{ title: "Terminal Apps (C)", desc: "C ile terminal tabanlı araçlar.", badge: "C / CLI" },
+		{ title: "System Logic", desc: "Temel sistem ve dosya işlemleri.", badge: "Logic" }
+	];
+const projects = [
+	{
+		title: "Anizm.net",
+		desc: "Popüler bir online anime izleme platformu için modern ve kullanıcı dostu bir website geliştirdim.",
+		image: web1
+	},
+	{
+		title: "Portfolio",
+		desc: "Kendi portfolyomu modern UI prensipleri ve minimal tasarım diliyle oluşturdum.",
+		image: web2
+	},
+	{
+		title: "RPM Manager",
+		desc: "Open source bir Java library’sinin resmi websitesini tasarlayıp geliştirdim.",
+		image: web3
+	}
+];
 
-    const experiences = [
-        { title: "Component Development", desc: "Reusable ve temiz UI component’leri geliştiriyorum.", badge: "UI" },
-        { title: "Svelte UI Development", desc: "Modern ve performanslı Svelte arayüzleri.", badge: "Svelte" },
-        { title: "Responsive Design", desc: "Tüm ekranlar için uyumlu tasarım.", badge: "Responsive" },
-        { title: "Modern UI Systems", desc: "Minimal ve sürdürülebilir tasarım dilleri.", badge: "Design" },
-        { title: "Terminal Apps (C)", desc: "C ile terminal tabanlı araçlar.", badge: "C / CLI" },
-        { title: "System Logic", desc: "Temel sistem ve dosya işlemleri.", badge: "Logic" }
-    ];
-
-    const projects = [
-        {
-            title: "Anizm.net",
-            desc: "Popüler bir online anime izleme platformu için modern ve kullanıcı dostu bir website geliştirdim.",
-            image: web1
-        },
-        {
-            title: "Portfolio",
-            desc: "Kendi portfolyomu modern UI prensipleri ve minimal tasarım diliyle oluşturdum.",
-            image: web2
-        },
-        {
-            title: "RPM Manager",
-            desc: "Open source bir Java library’sinin resmi websitesini tasarlayıp geliştirdim.",
-            image: web3
-        }
-    ];
 </script>
 
 <section class="wrapper">
 
-    <!-- EXPERIENCES -->
-    <section class="section purple">
-        <header class="header">
-            <div>
-                <h2>Tecrübeler</h2>
-                <p>Odaklandığım teknik alanlar</p>
-            </div>
+	<section class="section purple">
+		<header class="header">
+			<div>
+				<h2>Tecrübeler</h2>
+				<p>Odaklandığım teknik alanlar</p>
+			</div>
 
-            <div class="arrows">
-                <button on:click={() => scroll(expSlider, -1)}>‹</button>
-                <button on:click={() => scroll(expSlider, 1)}>›</button>
-            </div>
-        </header>
+			<div class="arrows">
+				<button on:click={() => scroll(expSlider, -1)}>‹</button>
+				<button on:click={() => scroll(expSlider, 1)}>›</button>
+			</div>
+		</header>
 
-        <div class="slider" bind:this={expSlider}>
-            {#each experiences as exp}
-                <div class="card">
-                    <span class="badge">{exp.badge}</span>
-                    <h3>{exp.title}</h3>
-                    <p>{exp.desc}</p>
-                </div>
-            {/each}
-        </div>
-    </section>
+		<div class="slider" bind:this={expSlider}>
+			{#each experiences as exp}
+				<div class="card">
+					<span class="badge">{exp.badge}</span>
+					<h3>{exp.title}</h3>
+					<p>{exp.desc}</p>
+				</div>
+			{/each}
+		</div>
+	</section>
 
-    <!-- PROJECTS -->
-    <section class="section green">
-        <header class="header">
-            <div>
-                <h2>Projeler</h2>
-                <p>Tamamlanan çalışmalar</p>
-            </div>
+	<section class="section green">
+		<header class="header">
+			<div>
+				<h2>Projeler</h2>
+				<p>Tamamlanan çalışmalar</p>
+			</div>
 
-            <div class="arrows">
-                <button on:click={() => scroll(projSlider, -1)}>‹</button>
-                <button on:click={() => scroll(projSlider, 1)}>›</button>
-            </div>
-        </header>
+			<div class="arrows">
+				<button on:click={() => scroll(projSlider, -1)}>‹</button>
+				<button on:click={() => scroll(projSlider, 1)}>›</button>
+			</div>
+		</header>
 
-        <div class="slider" bind:this={projSlider}>
-            {#each projects as proj}
-                <div class="card project">
-                    <div
-                        class="image"
-                        style="background-image:url({proj.image})"
-                    ></div>
-                    <h3>{proj.title}</h3>
-                    <p>{proj.desc}</p>
-                </div>
-            {/each}
-        </div>
-    </section>
+		<div class="slider" bind:this={projSlider}>
+			{#each projects as proj}
+				<div class="card project">
+					<div
+						class="image"
+						style="background-image:url('{proj.image}')"
+					></div>
+					<h3>{proj.title}</h3>
+					<p>{proj.desc}</p>
+				</div>
+			{/each}
+		</div>
+	</section>
 
 </section>
 

@@ -18,7 +18,7 @@
     let playing = false;
     let progress = 0;
     let duration = 0;
-    let volume = 0.10;
+    let volume = 0.2;
 
     function toggleMusic() {
         playing ? audio.pause() : audio.play();
@@ -89,15 +89,16 @@
         <div class="musicPlayer">
 
 <audio
-    bind:this={audio}
-    src={song}
-    on:loadedmetadata={() => {
-        audio.volume = volume;
-        updateProgress();
-    }}
-    on:timeupdate={updateProgress}
-    on:ended={() => (playing = false)}
-/>
+	bind:this={audio}
+	src={song}
+	on:loadedmetadata={() => {
+		audio.volume = volume;
+		updateProgress();
+	}}
+	on:timeupdate={updateProgress}
+	on:ended={() => (playing = false)}
+></audio>
+
 
             <div class="songInfo">
                 <span class="artist">Teoman</span><br>
