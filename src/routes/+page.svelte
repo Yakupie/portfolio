@@ -30,6 +30,7 @@
 				duration: 0.7,
 				stagger: 0.15,
 				ease: 'power2.out'
+                clearProps: 'transform,opacity'
 			});
 		});
 	});
