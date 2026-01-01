@@ -10,7 +10,7 @@
     import js from '$lib/assets/js.webp';
     import svelteIcon from '$lib/assets/svelte.webp';
     import node from '$lib/assets/node.webp';
-    import c from '$lib/assets/c.webp';
+    import c from '$lib/assets/C.webp';
     import php from '$lib/assets/php.webp';
     import mysql from '$lib/assets/mysql.webp';
 
