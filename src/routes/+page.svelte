@@ -48,14 +48,12 @@ onMount(async () => {
 	class="heroBg"
 	src="/assets/background.webp"
 	alt=""
-	width="1280"
-	height="720"
+	width="1920"
+	height="1080"
 	fetchpriority="high"
 	loading="eager"
 	decoding="async"
 />
-
-
 
 
 	<Navbar />
