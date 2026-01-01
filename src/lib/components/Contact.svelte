@@ -167,7 +167,6 @@
 </section>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 :root{
     --bg-dark: rgba(10,10,18,.85);

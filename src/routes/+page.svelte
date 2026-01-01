@@ -97,8 +97,9 @@
 	height: 100%;
 	object-fit: cover;
 	z-index: 0;
-	filter: brightness(0.4);
+	filter: none;
 }
+
 
 .hero::after {
 	content: '';

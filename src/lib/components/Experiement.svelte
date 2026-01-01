@@ -99,7 +99,6 @@
 </section>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&family=Inter:wght@400;500&display=swap');
 
 .wrapper {
 	padding: 4rem 1.5rem;
