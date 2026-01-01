@@ -1,6 +1,5 @@
 <script>
-	// Global CSS varsa buraya
-	// import '$lib/styles/global.css';
+	// global js yok
 </script>
 
 <svelte:head>

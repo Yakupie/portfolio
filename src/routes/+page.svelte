@@ -7,72 +7,63 @@
 	import Experiement from '$lib/components/Experiement.svelte';
 	import Contact from '$lib/components/Contact.svelte';
 
-	let mounted = false;
+	onMount(async () => {
+		if (typeof window === 'undefined') return;
 
-onMount(async () => {
-	if (typeof window === 'undefined') return;
+		const { gsap } = await import('gsap');
+		const { ScrollTrigger } = await import('gsap/ScrollTrigger');
 
-	const { gsap } = await import('gsap');
-	const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+		gsap.registerPlugin(ScrollTrigger);
 
-	gsap.registerPlugin(ScrollTrigger);
+		// COMPONENT İÇİ ANİMASYON
+		gsap.utils.toArray('.reveal').forEach(section => {
+			const items = section.querySelectorAll('.reveal-item');
 
-	gsap.from('.navbar', {
-		y: -40,
-		opacity: 0,
-		duration: 0.8
-	});
-
-	gsap.utils.toArray('.section').forEach(el => {
-		gsap.from(el, {
-			scrollTrigger: {
-				trigger: el,
-				start: 'top 85%',
-				once: true
-			},
-			y: 40,
-			opacity: 0,
-			duration: 0.8
+			gsap.from(items, {
+				scrollTrigger: {
+					trigger: section,
+					start: 'top 80%',
+					once: true
+				},
+				y: 40,
+				opacity: 0,
+				duration: 0.7,
+				stagger: 0.15,
+				ease: 'power2.out'
+			});
 		});
 	});
-
-	// 🔥 BUNU UNUTMUŞSUN
-	mounted = true;
-});
-
 </script>
 
 <!-- HERO -->
 <div class="container hero">
-<img
-	class="heroBg"
-	src="/assets/background.webp"
-	alt=""
-	width="1920"
-	height="1080"
-	fetchpriority="high"
-	loading="eager"
-	decoding="async"
-/>
-
+	<img
+		class="heroBg"
+		src="/assets/background.webp"
+		alt=""
+		width="1280"
+		height="720"
+		fetchpriority="high"
+		loading="eager"
+		decoding="async"
+	/>
 
 	<Navbar />
 	<MainPage />
 </div>
 
-{#if mounted}
-	<div class="container section">
-		<PageCard />
-	</div>
+<!-- CONTENT -->
+<div class="container section">
+	<PageCard />
+</div>
 
-	<div class="container section">
-		<Experiement />
-	</div>
+<div class="container section">
+	<Experiement />
+</div>
 
-	<div class="container section">
-		<Contact />
-	</div>
-{/if}
+<div class="container section">
+	<Contact />
+</div>
 
 <style>
 .container > *:not(.heroBg) {
@@ -80,16 +71,10 @@ onMount(async () => {
 	z-index: 2;
 }
 
-:global(*) {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
 /* HERO */
 .hero {
 	position: relative;
-	isolation: isolate; /* ⬅️ ALTIN SATIR */
+	isolation: isolate;
 	height: 95vh;
 	overflow: hidden;
 }
@@ -101,7 +86,6 @@ onMount(async () => {
 	height: 100%;
 	object-fit: cover;
 	z-index: 0;
-	filter: none;
 }
 
 /* SECTIONS */
@@ -110,22 +94,11 @@ onMount(async () => {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background:
-		radial-gradient(
-			1200px 600px at 50% -280px,
-			rgba(123,75,179,.14),
-			transparent 72%
-		),
-		linear-gradient(
-			180deg,
-			#05050b 0%,
-			#080812 50%,
-			#05050b 100%
-		);
 }
 
 /* GLOBAL BG */
 :global(html, body) {
+	margin: 0;
 	background:
 		radial-gradient(
 			1400px 700px at 50% -300px,
@@ -143,6 +116,7 @@ onMount(async () => {
 /* SCROLLBAR */
 :global(::-webkit-scrollbar) {
 	width: 10px;
+    height: 5px;
 }
 :global(::-webkit-scrollbar-track) {
 	background: #05050b;
@@ -150,6 +124,5 @@ onMount(async () => {
 :global(::-webkit-scrollbar-thumb) {
 	background: linear-gradient(180deg, #3a2a5e, #211338);
 	border-radius: 999px;
-	border: 2px solid #05050b;
 }
 </style>

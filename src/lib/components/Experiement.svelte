@@ -12,12 +12,36 @@
 	}
 
 	const experiences = [
-		{ title: 'Component Development', desc: 'Reusable ve temiz UI component’leri geliştiriyorum.', badge: 'UI' },
-		{ title: 'Svelte UI Development', desc: 'Modern ve performanslı Svelte arayüzleri.', badge: 'Svelte' },
-		{ title: 'Responsive Design', desc: 'Tüm ekranlar için uyumlu tasarım.', badge: 'Responsive' },
-		{ title: 'Modern UI Systems', desc: 'Minimal ve sürdürülebilir tasarım dilleri.', badge: 'Design' },
-		{ title: 'Terminal Apps (C)', desc: 'C ile terminal tabanlı araçlar.', badge: 'C / CLI' },
-		{ title: 'System Logic', desc: 'Temel sistem ve dosya işlemleri.', badge: 'Logic' }
+		{
+			title: 'Component Development',
+			desc: 'Reusable ve temiz UI component’leri geliştiriyorum.',
+			badge: 'UI'
+		},
+		{
+			title: 'Svelte UI Development',
+			desc: 'Modern ve performanslı Svelte arayüzleri.',
+			badge: 'Svelte'
+		},
+		{
+			title: 'Responsive Design',
+			desc: 'Tüm ekranlar için uyumlu tasarım.',
+			badge: 'Responsive'
+		},
+		{
+			title: 'Modern UI Systems',
+			desc: 'Minimal ve sürdürülebilir tasarım dilleri.',
+			badge: 'Design'
+		},
+		{
+			title: 'Terminal Apps (C)',
+			desc: 'C ile terminal tabanlı araçlar.',
+			badge: 'C / CLI'
+		},
+		{
+			title: 'System Logic',
+			desc: 'Temel sistem ve dosya işlemleri.',
+			badge: 'Logic'
+		}
 	];
 
 	const projects = [
@@ -39,9 +63,10 @@
 	];
 </script>
 
-<section class="wrapper">
+<section class="wrapper reveal">
+
 	<!-- EXPERIENCES -->
-	<section class="section purple">
+	<section class="section purple reveal-item">
 		<header class="header">
 			<div>
 				<h2>Tecrübeler</h2>
@@ -66,7 +91,7 @@
 	</section>
 
 	<!-- PROJECTS -->
-	<section class="section green">
+	<section class="section green reveal-item">
 		<header class="header">
 			<div>
 				<h2>Projeler</h2>
@@ -96,10 +121,10 @@
 			{/each}
 		</div>
 	</section>
+
 </section>
 
 <style>
-
 .wrapper {
 	padding: 4rem 1.5rem;
 	display: flex;
@@ -107,6 +132,7 @@
 	gap: 4.5rem;
 }
 
+/* SECTIONS */
 .section {
 	max-width: 980px;
 	margin: 0 auto;
@@ -115,6 +141,7 @@
 	gap: 1.6rem;
 }
 
+/* HEADER */
 .header {
 	display: flex;
 	justify-content: space-between;
@@ -135,6 +162,7 @@
 	color: rgba(241, 239, 255, 0.55);
 }
 
+/* ARROWS */
 .arrows {
 	display: flex;
 	gap: 0.4rem;
@@ -150,11 +178,13 @@
 	cursor: pointer;
 }
 
+/* SLIDER */
 .slider {
 	display: flex;
 	gap: 1.4rem;
 	overflow-x: auto;
 	scroll-snap-type: x mandatory;
+	padding-bottom: 0.4rem;
 }
 
 .card {
@@ -164,14 +194,15 @@
 	border-radius: 16px;
 	padding: 1.6rem;
 	scroll-snap-align: start;
-	transition: transform 0.18s ease;
 	backdrop-filter: blur(12px);
+	transition: transform 0.18s ease;
 }
 
 .card:hover {
 	transform: translateY(-4px);
 }
 
+/* BADGE */
 .badge {
 	position: absolute;
 	top: 14px;
@@ -184,6 +215,7 @@
 	color: #d7c7ff;
 }
 
+/* TEXT */
 .card h3 {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 1rem;
@@ -199,7 +231,7 @@
 	color: rgba(241, 239, 255, 0.6);
 }
 
-/* PROJECT IMAGE */
+/* PROJECT */
 .project img {
 	width: 100%;
 	height: 180px;
@@ -222,10 +254,12 @@
 	.arrows {
 		display: none;
 	}
+
 	.slider {
 		flex-direction: column;
 		overflow: visible;
 	}
+
 	.card {
 		width: 100%;
 		max-width: 520px;
