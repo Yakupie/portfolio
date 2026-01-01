@@ -14,7 +14,7 @@
 
         <div class="navbarUlArea">
             <ul class:open={menuOpen}>
-                <li><a href="#">Overview</a></li>
+                <li><a href="#">Aas</a></li>
                 <li><a href="#">Experiments</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
