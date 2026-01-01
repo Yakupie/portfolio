@@ -39,18 +39,26 @@
 
 <!-- HERO -->
 <div class="container hero">
+
 	<!-- 🔥 LCP IMAGE -->
-<img
-	class="heroBg"
-	src="/assets/background.webp"
-	alt=""
-	loading="eager"
-	fetchpriority="high"
-/>
+	<img
+		class="heroBg"
+		src="/assets/background.webp"
+		alt=""
+		width="1920"
+		height="1080"
+		loading="eager"
+		fetchpriority="high"
+		decoding="async"
+	/>
 
+	<div class="heroOverlay"></div>
 
-	<Navbar />
-	<MainPage />
+	<!-- ✅ SADECE HERO CONTENT ÖNE ALINIYOR -->
+	<div class="heroContent">
+		<Navbar />
+		<MainPage />
+	</div>
 </div>
 
 <div class="container section">
@@ -66,11 +74,6 @@
 </div>
 
 <style>
-.container > *:not(.heroBg) {
-	position: relative;
-	z-index: 2;
-}
-
 :global(*) {
 	margin: 0;
 	padding: 0;
@@ -84,7 +87,7 @@
 	overflow: hidden;
 }
 
-/* 🔥 HERO IMAGE (LCP FIX) */
+/* BACKGROUND */
 .heroBg {
 	position: absolute;
 	inset: 0;
@@ -95,20 +98,23 @@
 	filter: brightness(0.4);
 }
 
-.hero::after {
-	content: '';
+/* OVERLAY */
+.heroOverlay {
 	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 140px;
+	inset: 0;
+	z-index: 1;
 	background: linear-gradient(
 		to bottom,
 		rgba(7,7,13,0),
 		rgba(7,7,13,.6),
 		#07070d
 	);
-	z-index: 1;
+}
+
+/* CONTENT */
+.heroContent {
+	position: relative;
+	z-index: 2;
 }
 
 /* SECTIONS */
