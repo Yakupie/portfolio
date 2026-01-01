@@ -85,8 +85,9 @@
 
 /* HERO */
 .hero {
-	height: 95vh;
 	position: relative;
+	isolation: isolate; /* ⬅️ ALTIN SATIR */
+	height: 95vh;
 	overflow: hidden;
 }
 
@@ -98,23 +99,6 @@
 	object-fit: cover;
 	z-index: 0;
 	filter: none;
-}
-
-
-.hero::after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 140px;
-	background: linear-gradient(
-		to bottom,
-		rgba(7,7,13,0),
-		rgba(7,7,13,.6),
-		#07070d
-	);
-	z-index: 1;
 }
 
 /* SECTIONS */
