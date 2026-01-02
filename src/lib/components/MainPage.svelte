@@ -21,7 +21,7 @@
             </button>
 
             <button class="buyCoffeeButton">
-                ☕ Buy me a coffee
+                <i class="fa-solid fa-mug-saucer"></i> Buy me a coffee
             </button>
         </div>
     </div>

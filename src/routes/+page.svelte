@@ -15,7 +15,7 @@
 
 		gsap.registerPlugin(ScrollTrigger);
 
-		// COMPONENT İÇİ ANİMASYON
+		// REVEAL ANIMATIONS
 		gsap.utils.toArray('.reveal').forEach(section => {
 			const items = section.querySelectorAll('.reveal-item');
 
@@ -30,7 +30,7 @@
 				duration: 0.7,
 				stagger: 0.15,
 				ease: 'power2.out',
-                clearProps: 'transform,opacity'
+				clearProps: 'transform,opacity'
 			});
 		});
 	});
@@ -38,17 +38,30 @@
 
 <!-- HERO -->
 <div class="container hero">
-	<img
-		class="heroBg"
-		src="/assets/background.webp"
-		alt=""
-		width="1280"
-		height="720"
-		fetchpriority="high"
-		loading="eager"
-		decoding="async"
-	/>
+	<!-- BACKGROUND LAYER -->
+	<div class="hero-bg">
+		<picture>
+			<!-- MOBILE -->
+			<source
+				srcset="/assets/background_mobile.webp"
+				media="(max-width: 768px)"
+			/>
 
+			<!-- DESKTOP -->
+			<img
+				class="heroBg"
+				src="/assets/background.webp"
+				alt=""
+				width="1280"
+				height="720"
+				fetchpriority="high"
+				loading="eager"
+				decoding="async"
+			/>
+		</picture>
+	</div>
+
+	<!-- FOREGROUND -->
 	<Navbar />
 	<MainPage />
 </div>
@@ -67,7 +80,8 @@
 </div>
 
 <style>
-.container > *:not(.heroBg) {
+/* Z-INDEX FIX */
+.container > *:not(.hero-bg) {
 	position: relative;
 	z-index: 2;
 }
@@ -75,18 +89,33 @@
 /* HERO */
 .hero {
 	position: relative;
-	isolation: isolate;
 	height: 95vh;
 	overflow: hidden;
 }
 
-.heroBg {
+/* BACKGROUND WRAPPER */
+.hero-bg {
 	position: absolute;
 	inset: 0;
+	z-index: 0;
+}
+
+/* IMAGE */
+.hero-bg picture,
+.hero-bg img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	z-index: 0;
+	display: block;
+}
+
+/* DARKEN OVERLAY (ONLY IMAGE) */
+.hero-bg::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.65);
+	pointer-events: none;
 }
 
 /* SECTIONS */
@@ -97,7 +126,7 @@
 	align-items: center;
 }
 
-/* GLOBAL BG */
+/* GLOBAL BACKGROUND */
 :global(html, body) {
 	margin: 0;
 	background:
@@ -117,7 +146,7 @@
 /* SCROLLBAR */
 :global(::-webkit-scrollbar) {
 	width: 10px;
-    height: 5px;
+	height: 5px;
 }
 :global(::-webkit-scrollbar-track) {
 	background: #05050b;

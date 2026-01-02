@@ -1,30 +1,49 @@
 <script>
 	// ileride props eklenebilir
+	import avatar from '$lib/assets/gitpp.webp';
 </script>
 
-<section class="codeCardWrapper reveal">
+<section
+	class="codeCardWrapper reveal"
+	aria-labelledby="profile-name"
+>
 	<div class="codeCardLayout">
 
 		<!-- PROFILE -->
-		<div class="profileSide reveal-item">
-			<div class="profileImage"></div>
+		<aside class="profileSide reveal-item" aria-label="Developer profile">
+			<div
+				class="profileImage"
+				role="img"
+				aria-label="Profile picture of Yakup Döğer"
+				style="background-image: url({avatar});"
+			></div>
 
 			<div class="profileText">
-				<div class="profileName">Yakup Döğer</div>
-				<div class="profileTitle">Web Developer</div>
+				<div
+					id="profile-name"
+					class="profileName"
+				>
+					Yakup Döğer
+				</div>
+				<div class="profileTitle">
+					Web Developer
+				</div>
 			</div>
-		</div>
+		</aside>
 
 		<!-- CODE CARD -->
-		<div class="codeCard reveal-item">
-			<div class="codeHeader">
+		<article
+			class="codeCard reveal-item"
+			aria-label="Developer overview code example"
+		>
+			<div class="codeHeader" aria-hidden="true">
 				<span class="dot red"></span>
 				<span class="dot yellow"></span>
 				<span class="dot green"></span>
 				<span class="title">overview.ts</span>
 			</div>
 
-			<pre class="codeBody"><code>
+			<pre class="codeBody"><code aria-label="Developer overview code">
 <span class="keyword">export const</span> <span class="variable">developer</span> = &#123;
   <span class="property">name</span>: <span class="string">'Yakup Döğer'</span>,
   <span class="property">title</span>: <span class="string">'Web Developer'</span>
@@ -39,7 +58,7 @@
   <span class="property">stack</span>: <span class="string">'HTML, CSS, JavaScript, Svelte.js, C, Node.js, PHP, MySQL'</span>
 &#125;;
 			</code></pre>
-		</div>
+		</article>
 
 	</div>
 </section>
@@ -86,7 +105,9 @@
 	width: 96px;
 	height: 96px;
 	border-radius: 50%;
-	background: url('https://github.com/yakupie.png') center / cover no-repeat;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
 	border: 2px solid rgba(123, 75, 179, 0.55);
 }
 
@@ -134,15 +155,9 @@
 	height: 10px;
 	border-radius: 50%;
 }
-.red {
-	background: #ff5f56;
-}
-.yellow {
-	background: #ffbd2e;
-}
-.green {
-	background: #27c93f;
-}
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
 
 .title {
 	margin-left: 0.7rem;
@@ -159,23 +174,14 @@
 	font-size: 0.88rem;
 	line-height: 1.55;
 	color: rgba(241, 239, 255, 0.85);
-
 	overflow-x: auto;
 }
 
 /* SYNTAX */
-.keyword {
-	color: #c792ea;
-}
-.variable {
-	color: #82aaff;
-}
-.property {
-	color: #7fdbca;
-}
-.string {
-	color: #ecc48d;
-}
+.keyword { color: #c792ea; }
+.variable { color: #82aaff; }
+.property { color: #7fdbca; }
+.string { color: #ecc48d; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {

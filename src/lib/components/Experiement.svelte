@@ -63,53 +63,93 @@
 	];
 </script>
 
-<section class="wrapper reveal">
+<section class="wrapper reveal" aria-labelledby="exp-title">
 
 	<!-- EXPERIENCES -->
-	<section class="section purple reveal-item">
+	<section
+		class="section purple reveal-item"
+		aria-labelledby="exp-title"
+	>
 		<header class="header">
 			<div>
-				<h2>Tecrübeler</h2>
+				<h2 id="exp-title">Tecrübeler</h2>
 				<p>Odaklandığım teknik alanlar</p>
 			</div>
 
-			<div class="arrows">
-				<button aria-label="Önceki" on:click={() => scroll(expSlider, -1)}>‹</button>
-				<button aria-label="Sonraki" on:click={() => scroll(expSlider, 1)}>›</button>
+			<div class="arrows" aria-hidden="false">
+				<button
+					type="button"
+					aria-label="Önceki tecrübeler"
+					on:click={() => scroll(expSlider, -1)}
+				>
+					‹
+				</button>
+				<button
+					type="button"
+					aria-label="Sonraki tecrübeler"
+					on:click={() => scroll(expSlider, 1)}
+				>
+					›
+				</button>
 			</div>
 		</header>
 
-		<div class="slider" bind:this={expSlider}>
+		<div
+			class="slider"
+			bind:this={expSlider}
+			role="list"
+			aria-label="Tecrübeler listesi"
+		>
 			{#each experiences as exp}
-				<div class="card">
+				<article class="card" role="listitem">
 					<span class="badge">{exp.badge}</span>
 					<h3>{exp.title}</h3>
 					<p>{exp.desc}</p>
-				</div>
+				</article>
 			{/each}
 		</div>
 	</section>
 
 	<!-- PROJECTS -->
-	<section class="section green reveal-item">
+	<section
+		class="section green reveal-item"
+		aria-labelledby="proj-title"
+	>
 		<header class="header">
 			<div>
-				<h2>Projeler</h2>
+				<h2 id="proj-title">Projeler</h2>
 				<p>Tamamlanan çalışmalar</p>
 			</div>
 
 			<div class="arrows">
-				<button aria-label="Önceki" on:click={() => scroll(projSlider, -1)}>‹</button>
-				<button aria-label="Sonraki" on:click={() => scroll(projSlider, 1)}>›</button>
+				<button
+					type="button"
+					aria-label="Önceki projeler"
+					on:click={() => scroll(projSlider, -1)}
+				>
+					‹
+				</button>
+				<button
+					type="button"
+					aria-label="Sonraki projeler"
+					on:click={() => scroll(projSlider, 1)}
+				>
+					›
+				</button>
 			</div>
 		</header>
 
-		<div class="slider" bind:this={projSlider}>
+		<div
+			class="slider"
+			bind:this={projSlider}
+			role="list"
+			aria-label="Projeler listesi"
+		>
 			{#each projects as proj}
-				<div class="card project">
+				<article class="card project" role="listitem">
 					<img
 						src={proj.image}
-						alt={proj.title}
+						alt={`${proj.title} proje görseli`}
 						width="320"
 						height="180"
 						loading="lazy"
@@ -117,7 +157,7 @@
 					/>
 					<h3>{proj.title}</h3>
 					<p>{proj.desc}</p>
-				</div>
+				</article>
 			{/each}
 		</div>
 	</section>
@@ -187,6 +227,7 @@
 	padding-bottom: 0.4rem;
 }
 
+/* CARD */
 .card {
 	min-width: 260px;
 	position: relative;
@@ -249,20 +290,61 @@
 	border: 1px solid rgba(70, 180, 120, 0.25);
 }
 
-/* RESPONSIVE */
+/* ========================= */
+/* RESPONSIVE – NO OVERFLOW */
+/* ========================= */
+
 @media (max-width: 900px) {
+	.wrapper {
+		padding: 3rem 1rem;
+	}
+
+	.section {
+		max-width: 100%;
+		width: 100%;
+	}
+
+	.header {
+		align-items: flex-start;
+		gap: 1rem;
+	}
+
 	.arrows {
 		display: none;
 	}
 
 	.slider {
 		flex-direction: column;
-		overflow: visible;
+		justify-content: center;
+		align-items: center;
+		gap: 1.2rem;
+		overflow: hidden; /* 🔑 sağ taşmayı keser */
+		padding-bottom: 0;
 	}
 
 	.card {
-		width: 100%;
-		max-width: 520px;
+		width: 80%;
+		min-width: unset;   /* 🔑 slider’dan kalan min-width iptal */
+		max-width: 100%;
 	}
 }
+
+@media (max-width: 480px) {
+	.card {
+		padding: 1.3rem;
+	}
+
+	.project img {
+		height: 160px;
+	}
+
+	.header h2 {
+		font-size: 1.35rem;
+	}
+
+	.header p {
+		font-size: 0.8rem;
+	}
+}
+
 </style>
