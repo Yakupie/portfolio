@@ -43,24 +43,25 @@
 			badge: 'Logic'
 		}
 	];
+const projects = [
+	{
+		title: 'Anizm.net',
+		desc: 'Popüler bir anime izleme platformu. Kullanıcı deneyimi, performans ve modern arayüz odağında web sitesinin tasarımı ve geliştirilmesi tarafımca gerçekleştirilmiştir.',
+		image: web1
+	},
+	{
+		title: 'Portfolio',
+		desc: 'Minimal UI prensipleriyle geliştirilen, projeleri ve teknik yetkinlikleri sade ve etkili bir şekilde sunmayı amaçlayan kişisel web sitesi.',
+		image: web2
+	},
+	{
+		title: 'RPM Manager',
+		desc: 'Açık kaynaklı bir Java projesi için hazırlanmış, dokümantasyon ve proje tanıtımını merkezine alan resmi web sitesi.',
+		image: web3
+	}
+];
 
-	const projects = [
-		{
-			title: 'Anizm.net',
-			desc: 'Modern ve kullanıcı dostu bir anime platformu.',
-			image: web1
-		},
-		{
-			title: 'Portfolio',
-			desc: 'Minimal UI prensipleriyle oluşturulmuş kişisel site.',
-			image: web2
-		},
-		{
-			title: 'RPM Manager',
-			desc: 'Open source Java projesi için resmi website.',
-			image: web3
-		}
-	];
+
 </script>
 
 <section class="wrapper reveal" aria-labelledby="exp-title">
