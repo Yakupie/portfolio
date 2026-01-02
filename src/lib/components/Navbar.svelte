@@ -19,21 +19,31 @@
 		</div>
 
 		<div class="navbarUlArea">
-			<ul
-				id="main-menu"
-				class:open={menuOpen}
-				role="menubar"
-			>
-				<li role="none">
-					<a role="menuitem" href="#">Overview</a>
-				</li>
-				<li role="none">
-					<a role="menuitem" href="#">Experiments</a>
-				</li>
-				<li role="none">
-					<a role="menuitem" href="#">Contact</a>
-				</li>
-			</ul>
+		<ul
+	id="main-menu"
+	class:open={menuOpen}
+	role="menubar"
+>
+	<li role="none">
+	<a role="menuitem" href="#overview" on:click={() => (menuOpen = false)}>
+		Overview
+	</a>
+</li>
+
+<li role="none">
+	<a role="menuitem" href="#experiments" on:click={() => (menuOpen = false)}>
+		Experiments
+	</a>
+</li>
+
+<li role="none">
+	<a role="menuitem" href="#contact" on:click={() => (menuOpen = false)}>
+		Contact
+	</a>
+</li>
+
+</ul>
+
 		</div>
 
 		<div class="navbarButtonArea">

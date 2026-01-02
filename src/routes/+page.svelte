@@ -37,7 +37,7 @@
 </script>
 
 <!-- HERO -->
-<div class="container hero">
+<div class="container hero ">
 	<!-- BACKGROUND LAYER -->
 	<div class="hero-bg">
 		<picture>
@@ -67,17 +67,18 @@
 </div>
 
 <!-- CONTENT -->
-<div class="container section">
+<div class="container section"  id="overview">
 	<PageCard />
 </div>
-
-<div class="container section">
+<div class="container section" id="experiments">
 	<Experiement />
 </div>
 
-<div class="container section">
+
+<div class="container section" id="contact">
 	<Contact />
 </div>
+
 
 <style>
 /* Z-INDEX FIX */
@@ -155,4 +156,12 @@
 	background: linear-gradient(180deg, #3a2a5e, #211338);
 	border-radius: 999px;
 }
+:global(html) {
+	scroll-behavior: smooth;
+}
+:global(.hero),
+:global(.section) {
+	scroll-margin-top: 96px;
+}
+
 </style>
